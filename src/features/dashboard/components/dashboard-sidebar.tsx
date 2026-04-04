@@ -131,7 +131,7 @@ export function DashboardSidebar() {
     },
     {
       title: "Help and support",
-      url: "mailto:business@codewithantonio.com",
+      url: "mailto:vaibhav200345@gmail.com",
       icon: Headphones,
     },
   ];
@@ -148,13 +148,13 @@ export function DashboardSidebar() {
         className="flex items-center gap-2 pl-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:pl-0">
           <Image
             src="/logo.svg"
-            alt="Resonance"
-            width={24}
-            height={24}
+            alt="Voxiva AI"
+            width={32}
+            height={32}
             className="rounded-sm"
           />
           <span className="group-data-[collapsible=icon]:hidden font-semibold text-lg tracking-tighter text-foreground">
-            Resonance
+            Voxiva AI
           </span>
           <SidebarTrigger className="ml-auto lg:hidden" />
         </div>
