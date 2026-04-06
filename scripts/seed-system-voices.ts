@@ -13,7 +13,7 @@ import {
 
 import { PrismaClient, type VoiceCategory } from "@prisma/client";
 
-import { CANONICAL_SYSTEM_VOICE_NAMES } from "../src/features/voices/data/voice-scoping";
+import { MY_VOICE_NAME } from "../src/features/voices/data/voice-scoping";
 
 const SYSTEM_VOICES_DIR = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -254,7 +254,7 @@ async function seedSystemVoice(name: string) {
           id: voice.id,
         },
       })
-      .catch(() => {});
+      .catch(() => { });
 
     throw error;
   }
@@ -262,10 +262,10 @@ async function seedSystemVoice(name: string) {
 
 async function main() {
   console.log(
-    `Seeding ${CANONICAL_SYSTEM_VOICE_NAMES.length} system voices...`,
+    `Seeding ${MY_VOICE_NAME.length} system voices...`,
   );
 
-  for (const name of CANONICAL_SYSTEM_VOICE_NAMES) {
+  for (const name of MY_VOICE_NAME) {
     console.log(`- ${name}`);
     await seedSystemVoice(name);
   }

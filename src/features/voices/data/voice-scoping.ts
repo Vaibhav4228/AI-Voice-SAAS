@@ -1,4 +1,4 @@
-export const CANONICAL_SYSTEM_VOICE_NAMES = [
+export const MY_VOICE_NAME = [
   "Aaron",
   "Abigail",
   "Anaya",

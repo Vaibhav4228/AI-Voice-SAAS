@@ -50,3 +50,6 @@ __pycache__
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Learning / Notes
+learning.md
