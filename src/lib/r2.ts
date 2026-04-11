@@ -53,3 +53,18 @@ export async function getSignedAudioUrl(key: string): Promise<string> {
   });
   return getSignedUrl(r2, command, { expiresIn: 3600 }); // 1 hour
 };
+
+export async function getAudioStream(key: string) {
+  const command = new GetObjectCommand({
+    Bucket: env.R2_BUCKET_NAME,
+    Key: key,
+  });
+
+  const response = await r2.send(command);
+
+  return {
+    stream: response.Body,
+    contentType: response.ContentType,
+  };
+}
+

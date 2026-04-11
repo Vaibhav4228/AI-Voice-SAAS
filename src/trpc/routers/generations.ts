@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/nextjs";
 import { z } from "zod";
 import { polar } from "@/lib/polar";
 import { env } from "@/lib/env";
@@ -120,7 +119,7 @@ export const generationsRouter = createTRPCRouter({
         parseAs: "arrayBuffer",
       });
 
-      Sentry.logger.info("Generation started", {
+      console.info("Generation started", {
         orgId: ctx.orgId,
         voiceId: input.voiceId,
         textLength: input.text.length,
@@ -175,7 +174,7 @@ export const generationsRouter = createTRPCRouter({
           },
         });
 
-        Sentry.logger.info("Audio generated", {
+        console.info("Audio generated", {
           orgId: ctx.orgId,
           generationId: generation.id,
         });
@@ -190,7 +189,7 @@ export const generationsRouter = createTRPCRouter({
             .catch(() => {});
         }
 
-        Sentry.logger.error("Generation failed", {
+        console.error("Generation failed", {
           orgId: ctx.orgId,
           voiceId: input.voiceId,
         });
