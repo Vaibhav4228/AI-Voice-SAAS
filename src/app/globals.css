@@ -47,96 +47,61 @@
     --radius-4xl: calc(var(--radius) + 16px);
 }
 
-:root {
+:root, .dark {
     --radius: 0.75rem;
 
-    /* Base */
-    --background: oklch(0.99 0.01 250);
-    --foreground: oklch(0.2 0.03 260);
+    /* Deep Black Backgrounds */
+    --background: oklch(0.12 0 0); /* #050505 approx */
+    --foreground: oklch(0.985 0 0);
+    
+    /* Slightly lighter for cards */
+    --card: oklch(0.16 0 0); /* #0a0a0a */
+    --card-foreground: oklch(0.985 0 0);
 
-    --card: oklch(1 0.01 250);
-    --card-foreground: oklch(0.2 0.03 260);
+    --popover: oklch(0.16 0 0);
+    --popover-foreground: oklch(0.985 0 0);
 
-    --popover: oklch(1 0.01 250);
-    --popover-foreground: oklch(0.2 0.03 260);
-
-    /* 🔥 PRIMARY (Voxiva gradient inspired) */
-    --primary: oklch(0.6 0.25 280); /* purple */
-    --primary-foreground: oklch(1 0 0);
+    /* Primary: Neon Purple/Cyan Gradient logic */
+    /* Using purple as base primary */
+    --primary: oklch(0.6 0.25 280); 
+    --primary-foreground: oklch(0.985 0 0);
 
     /* Secondary */
-    --secondary: oklch(0.95 0.02 260);
-    --secondary-foreground: oklch(0.25 0.04 260);
+    --secondary: oklch(0.22 0 0); /* #1a1a1a */
+    --secondary-foreground: oklch(0.985 0 0);
 
     /* Muted */
-    --muted: oklch(0.96 0.02 260);
-    --muted-foreground: oklch(0.55 0.04 260);
+    --muted: oklch(0.22 0 0);
+    --muted-foreground: oklch(0.708 0 0);
 
-    /* ⚡ Accent (neon cyan like logo dot) */
+    /* Accent: Neon Cyan */
     --accent: oklch(0.75 0.18 200);
-    --accent-foreground: oklch(0.1 0.02 260);
+    --accent-foreground: oklch(0.12 0 0);
 
     /* Danger */
     --destructive: oklch(0.6 0.22 25);
 
-    /* UI */
-    --border: oklch(0.9 0.02 260);
-    --input: oklch(0.92 0.02 260);
-    --ring: oklch(0.7 0.2 280);
-
-    /* Charts (aligned with brand) */
-    --chart-1: oklch(0.65 0.22 280); /* purple */
-    --chart-2: oklch(0.75 0.18 200); /* cyan */
-    --chart-3: oklch(0.7 0.2 320);   /* pinkish */
-    --chart-4: oklch(0.8 0.15 180);
-    --chart-5: oklch(0.75 0.2 60);
-
-    /* Sidebar */
-    --sidebar: oklch(0.98 0.01 250);
-    --sidebar-foreground: oklch(0.3 0.03 260);
-
-    --sidebar-primary: oklch(0.6 0.25 280);
-    --sidebar-primary-foreground: oklch(1 0 0);
-
-    --sidebar-accent: oklch(0.95 0.02 260);
-    --sidebar-accent-foreground: oklch(0.25 0.04 260);
-
-    --sidebar-border: oklch(0.9 0.02 260);
-    --sidebar-ring: oklch(0.7 0.2 280);
-}
-
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
+    /* UI Borders */
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
+    --ring: oklch(0.6 0.25 280); /* Focus glows purple */
+
+    /* Charts */
+    --chart-1: oklch(0.6 0.25 280);
+    --chart-2: oklch(0.75 0.18 200);
     --chart-3: oklch(0.769 0.188 70.08);
     --chart-4: oklch(0.627 0.265 303.9);
     --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
+
+    /* Sidebar - Glassmorphism base */
+    --sidebar: oklch(0.12 0 0 / 60%);
     --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary: oklch(0.6 0.25 280);
     --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent: oklch(1 0 0 / 5%);
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --sidebar-ring: oklch(0.6 0.25 280);
 }
 
 @layer base {
@@ -150,4 +115,39 @@
     [role="button"]:not(:disabled) {
         cursor: pointer;
     }
+}
+
+/* Custom Utilities for Neon/Glassmorphism in Tailwind v4 */
+@utility bg-glass {
+    background-color: var(--card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+}
+
+@utility bg-glass-deep {
+    background-color: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+}
+
+@utility text-glow-primary {
+    text-shadow: 0 0 20px var(--color-primary);
+}
+
+@utility text-glow-accent {
+    text-shadow: 0 0 20px var(--color-accent);
+}
+
+@utility border-glow {
+    box-shadow: 0 0 15px -5px var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+@utility text-gradient-neon {
+    background: linear-gradient(135deg, oklch(0.8 0.2 280) 0%, oklch(0.7 0.2 200) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

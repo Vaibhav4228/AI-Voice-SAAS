@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <TRPCReactProvider>
-        <html lang="en">
+        <html lang="en" className="dark">
           <body
             className={`${inter.variable} ${geistMono.variable} antialiased`}
           >

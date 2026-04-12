@@ -23,19 +23,8 @@ export function PageHeader({
         <SidebarTrigger />
         <h1 className="text-lg font-semibold tracking-tight">{title}</h1>
       </div>
+      {/* Buttons removed for a cleaner look */}
       <div className="flex items-center gap-3">
-         <Button variant="outline" size="sm" asChild>
-            <Link href="mailto:vaibhav200345@gmail.com">
-              <ThumbsUp />
-              <span className="hidden lg:block">Feedback</span>
-            </Link>
-         </Button>
-         <Button variant="outline" size="sm" asChild>
-          <Link href="mailto:vaibhav200345@gmail.com">
-            <Headphones />
-            <span className="hidden lg:block">Need help?</span>
-          </Link>
-        </Button>
       </div>
     </div>
   );

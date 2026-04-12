@@ -11,7 +11,7 @@ image = (
     modal.Image.debian_slim(python_version="3.11")
     .pip_install("numpy<1.26.0,>=1.24.0")
     .pip_install(
-        "chatterbox-tts==0.1.4",
+        "chatterbox-tts==0.1.7",
         "fastapi",
         "uvicorn",
         "python-multipart"
@@ -25,6 +25,7 @@ app = modal.App("voxiva-chatterbox", image=image)
 # without downloading them manually via HTTP.
 r2_mount = modal.CloudBucketMount(
     "voxiva-ai",  # Your R2 bucket name
+    bucket_endpoint_url="https://1769e21ec496f0fc8b1137952faee825.r2.cloudflarestorage.com",
     secret=modal.Secret.from_name("CLOUDFLARE_R2"),
 )
 
@@ -52,12 +53,13 @@ def fastapi_app():
     web_app = FastAPI()
     
     # Lazy load the TTS engine inside the function to save cold-start time
-    from chatterbox import Chatterbox
+    from chatterbox.tts_turbo import ChatterboxTurboTTS
+    import torch
+    import torchaudio as ta
     
-    # Authenticate with HuggingFace to download weights
-    token = os.environ["HF_TOKEN"]
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     # Initialize the model (it will be cached in the container after the first run)
-    tts = Chatterbox.from_pretrained("resemble-ai/chatterbox-turbo-v1", token=token)
+    tts = ChatterboxTurboTTS.from_pretrained(device=device)
 
     @web_app.post("/generate")
     async def generate(
@@ -81,19 +83,20 @@ def fastapi_app():
             # Chatterbox accepts a list of prompts and returns a list of audio tensors
             # but we only need one for this request.
             audio = tts.generate(
-                prompt=request.prompt,
-                voice=voice_path,
+                request.prompt,
+                audio_prompt_path=voice_path,
                 temperature=request.temperature,
                 top_p=request.top_p,
                 top_k=request.top_k,
-                repetition_penalty=request.repetition_penalty,
-                norm_loudness=request.norm_loudness
+                repetition_penalty=request.repetition_penalty
+                # norm_loudness is removed as it's not in standard API
             )
             
-            # Convert PyTorch tensor/audio object to WAV bytes
+            # Convert PyTorch tensor to WAV bytes
             buffer = BytesIO()
-            audio.save(buffer, format="wav")
+            ta.save(buffer, audio, tts.sr, format="wav")
             buffer.seek(0)
+
             
             return Response(
                 content=buffer.read(),

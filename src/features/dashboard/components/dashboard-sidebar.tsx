@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { usePathname } from "next/navigation";
 
 import {
@@ -102,11 +102,6 @@ export function DashboardSidebar() {
 
   const mainMenuItems: MenuItem[] = [
     {
-      title: "Dashboard",
-      url: "/",
-      icon: Home,
-    },
-    {
       title: "Explore voices",
       url: "/voices",
       icon: LayoutGrid,
@@ -129,11 +124,6 @@ export function DashboardSidebar() {
       icon: Settings,
       onClick: () => clerk.openOrganizationProfile(),
     },
-    {
-      title: "Help and support",
-      url: "mailto:vaibhav200345@gmail.com",
-      icon: Headphones,
-    },
   ];
 
   return (
@@ -145,15 +135,11 @@ export function DashboardSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="flex flex-col gap-4 pt-4">
         <div 
-        className="flex items-center gap-2 pl-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:pl-0">
-          <Image
-            src="/logo.svg"
-            alt="Voxiva AI"
-            width={32}
-            height={32}
-            className="rounded-sm"
-          />
-          <span className="group-data-[collapsible=icon]:hidden font-semibold text-lg tracking-tighter text-foreground">
+        className="flex items-center gap-3 pl-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:pl-0">
+          <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 shadow-[0_0_15px_-3px_var(--color-primary)] shrink-0">
+            <AudioLines className="h-4 w-4 text-primary" />
+          </div>
+          <span className="group-data-[collapsible=icon]:hidden font-bold text-[19px] tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
             Voxiva AI
           </span>
           <SidebarTrigger className="ml-auto lg:hidden" />
@@ -172,7 +158,7 @@ export function DashboardSidebar() {
                   rootBox: 
                     "w-full! group-data-[collapsible=icon]:w-auto! group-data-[collapsible=icon]:flex! group-data-[collapsible=icon]:justify-center!",
                   organizationSwitcherTrigger:
-                    "w-full! justify-between! bg-white! border! border-border! rounded-md! pl-1! pr-2! py-1! gap-3! group-data-[collapsible=icon]:w-auto! group-data-[collapsible=icon]:p-1! shadow-[0px_1px_1.5px_0px_rgba(44,54,53,0.03)]!",
+                    "w-full! justify-between! bg-transparent! border! border-white/10! hover:bg-white/5! rounded-md! pl-1! pr-2! py-1! gap-3! group-data-[collapsible=icon]:w-auto! group-data-[collapsible=icon]:p-1! shadow-none!",
                   organizationPreview: "gap-2!",
                   organizationPreviewAvatarBox: "size-6! rounded-sm!",
                   organizationPreviewTextContainer: 
@@ -210,7 +196,7 @@ export function DashboardSidebar() {
                   rootBox:
                     "w-full! group-data-[collapsible=icon]:w-auto! group-data-[collapsible=icon]:flex! group-data-[collapsible=icon]:justify-center!",
                   userButtonTrigger:
-                    "w-full! justify-between! bg-white! border! border-border! rounded-md! pl-1! pr-2! py-1! shadow-[0px_1px_1.5px_0px_rgba(44,54,53,0.03)]! group-data-[collapsible=icon]:w-auto! group-data-[collapsible=icon]:p-1! group-data-[collapsible=icon]:after:hidden! [--border:color-mix(in_srgb,transparent,var(--clerk-color-neutral,#000000)_15%)]!",
+                    "w-full! justify-between! bg-transparent! hover:bg-white/5! border! border-white/10! rounded-md! pl-1! pr-2! py-1! shadow-none! group-data-[collapsible=icon]:w-auto! group-data-[collapsible=icon]:p-1! group-data-[collapsible=icon]:after:hidden!",
                   userButtonBox: "flex-row-reverse! gap-2!",
                   userButtonOuterIdentifier: "text-[13px]! tracking-tight! font-medium! text-foreground! pl-0! group-data-[collapsible=icon]:hidden!",
                   userButtonAvatarBox: "size-6!",

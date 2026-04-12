@@ -56,6 +56,7 @@ export const generationsRouter = createTRPCRouter({
     )
     .mutation(async ({ input, ctx }) => {
       // Check for active subscription before generation
+      /* 
       try {
         const customerState = await polar.customers.getStateExternal({
           externalId: ctx.orgId,
@@ -76,6 +77,7 @@ export const generationsRouter = createTRPCRouter({
           message: "SUBSCRIPTION_REQUIRED",
         });
       }
+      */
 
       const voice = await prisma.voice.findUnique({
         where: {
@@ -208,6 +210,7 @@ export const generationsRouter = createTRPCRouter({
       }
 
       // Ingest usage event to Polar (fire-and-forget, don't block response)
+      /* 
       polar.events
         .ingest({
           events: [
@@ -222,6 +225,7 @@ export const generationsRouter = createTRPCRouter({
         .catch(() => {
           // Silently fail - don't break the user experience for metering errors
         });
+      */
 
       return {
         id: generationId,
