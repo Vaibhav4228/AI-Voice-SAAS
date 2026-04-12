@@ -284,10 +284,10 @@ export default async function MarketingPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 bg-[#050505] py-12">
+      {/* ======================= FOOTER ======================= */}
+      <footer className="relative border-t border-white/5 bg-[#050505] pt-16 pb-8 overflow-hidden z-20">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-12 border-b border-white/5 pb-12">
+          <div className="grid md:grid-cols-4 gap-8 mb-16">
             <div className="md:col-span-1">
               <div className="flex items-center gap-2 mb-6">
                 <AudioLines className="h-5 w-5 text-primary" />
@@ -299,7 +299,7 @@ export default async function MarketingPage() {
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-white">Product</h4>
-              <ul className="space-y-3 test-sm text-muted-foreground">
+              <ul className="space-y-3 text-sm text-muted-foreground">
                 <li><Link href="#" className="hover:text-white transition-colors">Text to Speech</Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors">Voice Cloning</Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors">Voice Library</Link></li>
@@ -322,13 +322,32 @@ export default async function MarketingPage() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
+          
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground mb-12">
             <p>© {new Date().getFullYear()} Voxiva AI. Created for Demonstration.</p>
             <div className="flex gap-4 mt-4 md:mt-0">
                <Link href="#" className="hover:text-white">Privacy Policy</Link>
                <Link href="#" className="hover:text-white">Terms of Service</Link>
             </div>
           </div>
+
+          {/* MASSIVE TYPOGRAPHY (Swipe-like) */}
+           <div className="relative w-full flex justify-center group cursor-default select-none pointer-events-auto">
+              {/* Wireframe Outline Text */}
+              <h1 
+                className="text-[17vw] font-black leading-none tracking-tighter text-transparent transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+                style={{ WebkitTextStroke: "1px rgba(255,255,255,0.15)" }}
+              >
+                VOXIVA
+              </h1>
+              {/* Colorful Animated Hidden Fill */}
+              <h1 
+                className="absolute top-0 left-1/2 -translate-x-1/2 text-[17vw] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#06b6d4] to-[#6366f1] opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out animate-pulse"
+                style={{ WebkitTextStroke: "0px" }}
+              >
+                VOXIVA
+              </h1>
+           </div>
         </div>
       </footer>
     </div>
